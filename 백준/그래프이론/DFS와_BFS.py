@@ -28,7 +28,6 @@ def bfs(graph, n):
             if not check[i] and i not in queue:
                 queue.append(i)
 
-print(n, m, v)
 check = [False] * (n + 1)
 dfs(graph, v)
 print()
