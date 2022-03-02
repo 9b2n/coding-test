@@ -1,5 +1,8 @@
 n = int(input())
 points = list(map(int, input().split()[:n]))
-conPoints = sorted(list(set(points)))
+
+comPoints = sorted(list(set(points)))
+dic = {comPoints[i]: i for i in range(len(comPoints))}
+
 for point in points:
-    print(conPoints.index(point), end=" ")
+    print(dic[point], end=" ")
