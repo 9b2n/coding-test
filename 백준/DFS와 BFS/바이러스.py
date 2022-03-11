@@ -21,7 +21,5 @@ def dfs(graph, v):
             dfs(graph, x)
 
 dfs(graph, 1)
-print(graph)
-print(visited)
 
 print(sum(visited)-1)
