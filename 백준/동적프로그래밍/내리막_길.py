@@ -1,3 +1,7 @@
+import sys
+limit_number = 15000
+sys.setrecursionlimit(limit_number)
+
 m, n = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(m)]
 dy = [0, 1, 0, -1]
