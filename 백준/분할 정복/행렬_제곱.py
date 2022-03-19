@@ -22,4 +22,6 @@ def mulMatrix(A, B):
 result = power(A, b)
 
 for i in range(n):
-    print(*result[i])
+    for j in range(n):
+        print(result[i][j]%1000, end=' ')
+    print()
