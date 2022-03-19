@@ -18,4 +18,7 @@ def mul(A, B):
             C[i][k] %= m
     return C
 
-print(mul(power([[1, 1], [1, 0]], n-2), [[1],[1]])[0][0]%m)
+if n < 3:
+    print(1)
+else:
+    print(mul(power([[1, 1], [1, 0]], n-2), [[1],[1]])[0][0]%m)
