@@ -1,13 +1,12 @@
 def solution(id_list, report, k):
-    stop, reporter, history = {}, {}, set()
+    stop = {id: 0 for id in id_list}
+    reporter = {id: set() for id in id_list}
+
     for id in id_list:
         stop[id] = 0
         reporter[id] = set()
 
-    for string in report:
-        if string in history:
-            continue
-        history.add(string)
+    for string in set(report):
         f, t = string.split(" ")
         reporter[f].add(t)
         stop[t] += 1
