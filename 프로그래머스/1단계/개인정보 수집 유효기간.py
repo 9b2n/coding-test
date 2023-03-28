@@ -1,35 +1,27 @@
-from datetime import datetime
+# 리팩토링 하면서 배운 것
+# map()으로 각 할당 값 매핑
+# 날짜 계산은 일(day)로 계산하면 간단하다.
 
 
 def solution(today, terms, privacies):
     answer = []
-    y, m, d = today.split('.')
-    y, m, d = int(y), int(m), int(d)
+
     termInfo = {t.split()[0]: int(t.split()[1]) for t in terms}
-    days = [28] + [i for i in range(1, 29)]
-    months = [12] + [i for i in range(1, 13)]
+    today = toDays(today)
 
     for idx, privacy in enumerate(privacies):
         date, t = privacy.split()
-        dy, dm, dd = date.split('.')
-        dy, dm, dd = int(dy), int(dm), int(dd)
-
-        td = days[dd - 1]
-        tm = months[dm + (dd - 2) // 28]
-        ty = dy + (dm + (dd - 2) // 28 - 1) // 12
-
-        x = tm + termInfo[t]
-        tm = months[x % 12]
-        ty = ty + (x - 1)//12
-
-        if isPast(ty, tm, td, y, m, d):
-            answer.append(idx + 1)
+        past = toDays(date)
+        target = past + termInfo[t] * 28
+        if target - 1 < today:
+            answer.append(idx+1)
 
     return answer
 
 
-def isPast(ty, tm, td, y, m, d):
-    return datetime(ty, tm, td) < datetime(y, m, d)
+def toDays(date):
+    y, m, d = map(int, date.split('.'))
+    return y * 28 * 12 + m * 28 + d
 
 
 today, terms, privacies = "2022.05.19", ["A 6", "B 12", "C 3"], ["2021.05.02 A", "2021.07.01 B", "2022.02.19 C", "2022.02.20 C"]
