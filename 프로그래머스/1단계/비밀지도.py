@@ -3,15 +3,7 @@ def solution(n, arr1, arr2):
 
     for i in range(n):
         a = arr1[i] | arr2[i]
-        b = format(a, 'b')
-
-        new = []
-        if len(b) < n:
-            new.append(' ' * (n-len(b)))
-        for c in b:
-            new.append('#' if c == '1' else ' ')
-
-        answer.append(''.join(new))
+        answer.append(''.join(['#' if c == '1' else ' ' for c in format(a, 'b').zfill(n)]))
 
     return answer
 
